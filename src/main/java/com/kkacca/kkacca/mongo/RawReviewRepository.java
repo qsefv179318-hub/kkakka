@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface RawReviewRepository extends MongoRepository<RawReview, Long> {
     List<RawReview> findBySnackId(Long snackId);
+
+     boolean existsBySnackIdAndContent(Long snackId, String content);
 }

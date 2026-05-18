@@ -7,11 +7,17 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update      # 엔티티 기반으로 테이블 자동 생성/갱신
+      defer-datasource-initialization: true
     show-sql: true
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  sql:
+    init:
+      mode: always 
+
   data:
     mongodb:
       uri: mongodb://localhost:27017/kkacca
@@ -23,3 +29,24 @@ openai:
 
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true       # HTTP 요청과 응답 모두 UTF-8 인코딩을 강제 적용합니다.
+      enabled: true
+
+naver:
+  client-id: ${NAVER_CLIENT_ID}
+  client-secret: ${NAVER_CLIENT_SECRET}
+  shop-search-url: https://openapi.naver.com/v1/search/shop.json
+
+youtube:
+  api-key: ${YOUTUBE_API_KEY}
+  base-url: https://www.googleapis.com/youtube/v3
+  search-max-results: 50      # 과자 1개당 검색 영상 수 (YouTube API 최대 50)
+  comment-max-per-page: 100   # commentThreads 1페이지당 댓글 수 (최대 100)
+
+ai:
+  openai-url: https://api.openai.com/v1/chat/completions
+  model: gpt-4o-mini
+  batch-size: 50              # 한 번에 분석할 댓글 수

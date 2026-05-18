@@ -1,6 +1,8 @@
 package com.kkacca.kkacca.entity;
 
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,15 +11,18 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class RawReview {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String name;
 
     private Long snackId;
     private String imageUrl;
+    private String content;
     private String manufacturer;
+    private Integer rating;
     private Double averageRating;
+    private LocalDateTime crawledAt;
 
     @OneToOne(mappedBy = "snack", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private SnackAnalysis analysis;

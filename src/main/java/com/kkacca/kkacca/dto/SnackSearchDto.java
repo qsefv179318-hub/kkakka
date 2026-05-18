@@ -4,24 +4,20 @@ import com.kkacca.kkacca.entity.Snack;
 import lombok.*;
 
 @Getter @Builder @NoArgsConstructor @AllArgsConstructor
-public class MainRecommendDto {
-    private String category;       // sweet / salty / spicy / crispy / soft
+public class SnackSearchDto {
     private Long snackId;
     private String name;
     private String imageUrl;
     private String manufacturer;
     private Double averageRating;
-    private Double topScore;       // 해당 카테고리에서의 점수
 
-    public static MainRecommendDto of(String category, Snack snack, Double topScore) {
-        return MainRecommendDto.builder()
-                .category(category)
+    public static SnackSearchDto from(Snack snack) {
+        return SnackSearchDto.builder()
                 .snackId(snack.getId())
                 .name(snack.getName())
                 .imageUrl(snack.getImageUrl())
                 .manufacturer(snack.getManufacturer())
                 .averageRating(snack.getAverageRating())
-                .topScore(topScore)
                 .build();
     }
 }
